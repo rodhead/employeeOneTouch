@@ -1,10 +1,17 @@
 <!-- nav -->
-<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
-  <div class="navbar-nav">
-      <a class="nav-item nav-link" routerLink="/">Home</a>
-      <a class="nav-item nav-link" (click)="logout()">Logout</a>
-  </div>
-</nav>
+
+<nav class="navbar navbar-expand navbar-dark bg-dark justify-content-between" *ngIf="currentUser">
+    <a class="navbar-brand" routerLink="/">
+      <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+      Ganit One Touch
+    </a>
+    <form class="form-inline">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link my-2 my-sm-0" (click)="logout()">Logout</a>
+        </div>
+    </form>
+  </nav>
+  
 
 <!-- main app container -->
 <div class="container">

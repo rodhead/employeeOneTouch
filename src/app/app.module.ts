@@ -26,7 +26,7 @@ import { ErrorInterceptor } from './_helpers/error.interceptor';
   imports: [
     BrowserModule,
         AppRoutingModule,
-        FormsModule,
+        FormsModule, 
         HttpClientModule,
         ReactiveFormsModule,
   ],
