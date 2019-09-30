@@ -3,14 +3,16 @@ import { first } from 'rxjs/operators';
 
 import { User } from '../_models/user';
 import { UserService } from '../_services/user.service';
+import { Router } from '@angular/router';
 
 
 @Component({ templateUrl: 'home.component.html' })
 export class HomeComponent {
     loading = false;
+     homeVal=true;
     users: User[];
 
-    constructor(private userService: UserService) { }
+    constructor(private userService: UserService, private router:Router) { }
 
     ngOnInit() {
         this.loading = true;
@@ -18,5 +20,11 @@ export class HomeComponent {
             this.loading = false;
             this.users = users;
         });
+    }
+
+    timeExpensesPage(){
+        alert("click");
+        this.homeVal=false;
+        this.router.navigateByUrl("/leaveexpenses")
     }
 }

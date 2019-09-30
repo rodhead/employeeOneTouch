@@ -1,17 +1,45 @@
 <!-- nav -->
 
 <nav class="navbar navbar-expand navbar-dark bg-dark justify-content-between" *ngIf="currentUser">
-    <a class="navbar-brand" routerLink="/">
-      <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-      Ganit One Touch
-    </a>
-    <form class="form-inline">
-        <div class="navbar-nav">
-            <a class="nav-item nav-link my-2 my-sm-0" (click)="logout()">Logout</a>
-        </div>
-    </form>
-  </nav>
-  
+  <a class="navbar-brand" routerLink="/">
+    <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
+      alt="">
+    Ganit One Touch
+  </a>
+  <form class="form-inline">
+    <div class="navbar-nav">
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>dialpad</mat-icon>
+          <span>My Profile</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>notifications_off</mat-icon>
+          <span (click)="logout()">Logout</span>
+        </button>
+      </mat-menu>
+    </div>
+  </form>
+</nav>
+<nav class="navbar navbar-light bg-light" *ngIf="currentUser">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <form class="form-inline my-2 my-lg-0 example-form">
+    <mat-form-field class="example-full-width">
+      <input type="text" placeholder="Search App's" aria-label="Assignee" matInput [formControl]="myControl"
+        [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option.name}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+</nav>
+
+
 
 <!-- main app container -->
 <div class="container">

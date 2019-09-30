@@ -14,12 +14,16 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MaterialModule} from './material-module';
+import { TimeExpensesComponent } from './_routePageComponent/time-expenses/time-expenses.component';
 
 @NgModule({
   declarations: [
     AppComponent,        
         HomeComponent,
         LoginComponent,
+        TimeExpensesComponent,
         
         
   ],
@@ -29,6 +33,8 @@ import { ErrorInterceptor } from './_helpers/error.interceptor';
         FormsModule, 
         HttpClientModule,
         ReactiveFormsModule,
+        BrowserAnimationsModule,
+        MaterialModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
