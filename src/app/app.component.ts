@@ -14,35 +14,35 @@ export interface User {
 @Component({ selector: 'app', templateUrl: 'app.component.html' })
 export class AppComponent implements OnInit{
     myControl = new FormControl();
-  options: User[] = [
-    {name: 'Time Expenses'},
-    {name: 'My Profile'},
-    {name: 'Hiring Program'},
-    {name: 'Time Expenses'},
-    {name: 'My Profile'},
-    {name: 'Time Expenses'},
-    {name: 'My Profile'}
-  ];
+  // options: User[] = [
+  //   {name: 'Time Expenses'},
+  //   {name: 'My Profile'},
+  //   {name: 'Hiring Program'},
+  //   {name: 'Time Expenses'},
+  //   {name: 'My Profile'},
+  //   {name: 'Time Expenses'},
+  //   {name: 'My Profile'}
+  // ];
   filteredOptions: Observable<User[]>;
     currentUser: User;
     ngOnInit() {
-        this.filteredOptions = this.myControl.valueChanges
-          .pipe(
-            startWith(''),
-            map(value => typeof value === 'string' ? value : value.name),
-            map(name => name ? this._filter(name) : this.options.slice())
-          );
+        // this.filteredOptions = this.myControl.valueChanges
+        //   .pipe(
+        //     startWith(''),
+        //     map(value => typeof value === 'string' ? value : value.name),
+        //     map(name => name ? this._filter(name) : this.options.slice())
+        //   );
       }
     
-      displayFn(user?: User): string | undefined {
-        return user ? user.name : undefined;
-      }
+      // displayFn(user?: User): string | undefined {
+      //   return user ? user.name : undefined;
+      // }
     
-      private _filter(name: string): User[] {
-        const filterValue = name.toLowerCase();
+      // private _filter(name: string): User[] {
+      //   const filterValue = name.toLowerCase();
     
-        return this.options.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
-      }
+      //   return this.options.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
+      // }
 
     constructor(
         private router: Router,

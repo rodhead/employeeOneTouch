@@ -1,48 +1,88 @@
-<mat-card class="example-card mt-4">
-    <mat-card-header>
+
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Time Sheet!</strong> Time Sheet submition ends in 09:00 hrs.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+<mat-card class="example-card mt-4 bg-light shadow">
+    <mat-card-header class="">
         <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>Time Sheet</mat-card-title>
+        <mat-card-title ><i class="material-icons">
+            access_time
+            </i> <span class="display-6"> Time Sheet</span></mat-card-title>
     </mat-card-header>
     <mat-card-content>
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-            <!--- Note that these columns can be defined in any order.
-                              The actual rendered columns are set as a property on the row definition" -->
-
-            <!-- Position Column -->
-            <ng-container matColumnDef="position">
-                <th mat-header-cell *matHeaderCellDef> No. </th>
-                <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-            </ng-container>
-
-            <!-- Name Column -->
-            <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef> Name </th>
-                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-            </ng-container>
-
-            <!-- Weight Column -->
-            <ng-container matColumnDef="weight">
-                <th mat-header-cell *matHeaderCellDef> Weight </th>
-                <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-            </ng-container>
-
-            <!-- Symbol Column -->
-            <ng-container matColumnDef="symbol">
-                <th mat-header-cell *matHeaderCellDef> Symbol </th>
-                <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-            </ng-container>
-
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
+        <table class="table thead-dark">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Time Category</th>
+                <th scope="col">Sun</th>
+                <th scope="col">Mon</th>
+                <th scope="col">Tue</th>
+                <th scope="col">Wed</th>
+                <th scope="col">Thu</th>
+                <th scope="col">Fri</th>
+                <th scope="col">Sat</th>
+                <th scope="col">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"><i class="material-icons">
+                    add_circle
+                    </i></th>
+                <td>
+                    <mat-form-field>
+                        <mat-label>Time Category</mat-label>
+                        <mat-select>
+                            <mat-option *ngFor="let timeCat of timeCategory" [value]="timeCategory">
+                                {{timeCat}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+                <td>
+                        <input type="number" class="form-control" id="inputAddress" placeholder="">
+                      
+                </td>
+                <td>
+                    <input type="number" class="form-control" id="inputAddress" placeholder="">
+                </td>
+                <td>
+                    <input type="number" class="form-control" id="inputAddress" placeholder="">
+                </td>
+                <td>
+                    <input type="number" class="form-control" id="inputAddress" placeholder="">
+                </td>
+                <td>
+                    <input type="number" class="form-control" id="inputAddress" placeholder="">
+                </td>
+                <td>
+                    <input type="number" class="form-control" id="inputAddress" placeholder="">
+                </td>
+                <td>
+                    <input type="number" class="form-control" id="inputAddress" placeholder="">
+                </td>
+                <td>45</td>
+              </tr>
+             
+            </tbody>
+          </table>
     </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions>
+            <button mat-raised-button color="accent" (click)="saveTimeSheet()">save</button>
+            <button mat-raised-button color="primary" (click)="submitTimeSheet()">submit</button>
+            
+        </mat-card-actions>
 </mat-card>
 
-<mat-card class="example-card mt-4 ">
-    <mat-card-header>
+<mat-card class="example-card mt-4 bg-light">
+    <mat-card-header >
         <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>Upload Expenses</mat-card-title>
+        <mat-card-title >Upload Expenses</mat-card-title>
     </mat-card-header>
     <mat-card-content>
         <mat-divider></mat-divider>
@@ -56,4 +96,7 @@
         </mat-form-field>
 
     </mat-card-content>
+    <mat-card-actions>
+            <button mat-raised-button color="primary" (click)="submitEspenses()">submit</button>
+        </mat-card-actions>
 </mat-card>
