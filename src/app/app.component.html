@@ -27,17 +27,29 @@
 <nav class="navbar navbar-light bg-light" *ngIf="currentUser">
   <a class="navbar-brand" href="#">Navbar</a>
   <ul class="nav justify-content-end">
-      <li class="nav-item">
-          <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+      <li class="nav-item border-right">
+          <button mat-button [matMenuTriggerFor]="menu">Policy <i class="material-icons">
+              arrow_drop_down
+          </i></button>
           <mat-menu #menu="matMenu">
             <button mat-menu-item>Item 1</button>
             <button mat-menu-item>Item 2</button>
           </mat-menu>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+      <li class="nav-item border-right">
+          <button mat-button [matMenuTriggerFor]="track">Track <i class="material-icons">
+              arrow_drop_down
+          </i></button>
+          <mat-menu #track="matMenu">
+            <button mat-menu-item [matMenuTriggerFor]="timeExp">Time & Expense</button>
+            <button mat-menu-item>Leave Request</button>
+          </mat-menu>
+          <mat-menu #timeExp="matMenu">
+              <button mat-menu-item >Time Sheet Request</button>
+              <button mat-menu-item>Expense Request</button>
+            </mat-menu>
       </li>
-      <li class="nav-item">
+      <li class="nav-item border-right">
         <a class="nav-link" href="#">Link</a>
       </li>
       <li class="nav-item">

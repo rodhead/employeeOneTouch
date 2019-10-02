@@ -1,102 +1,141 @@
-
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        <strong>Time Sheet!</strong> Time Sheet submition ends in 09:00 hrs.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-<mat-card class="example-card mt-4 bg-light shadow">
+    <strong>Alert! </strong> Time Sheet submition ends in 09:00 hrs.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<mat-card class="example-card mt-4  shadow">
     <mat-card-header class="">
         <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title ><i class="material-icons">
-            access_time
-            </i> <span class="display-6"> Time Sheet</span></mat-card-title>
+        <mat-card-title><i class="material-icons">
+                access_time
+            </i> <span class="display-6"> Time Sheet</span>
+        </mat-card-title>
+            
     </mat-card-header>
+    
     <mat-card-content>
-        <table class="table thead-dark">
+            <div  [formGroup]="addForm">
+             <div class="form-group">
+        <table class="table thead-dark table-striped">
             <thead>
-              <tr>
-                <th scope="col"></th>
-                <th scope="col">Time Category</th>
-                <th scope="col">Sun</th>
-                <th scope="col">Mon</th>
-                <th scope="col">Tue</th>
-                <th scope="col">Wed</th>
-                <th scope="col">Thu</th>
-                <th scope="col">Fri</th>
-                <th scope="col">Sat</th>
-                <th scope="col">Total</th>
-              </tr>
+                <tr>
+                    <th scope="col"><button mat-icon-button (click)="onAddRow()" *ngIf="addForm.get('rows')"><i class="material-icons">
+                            add_circle
+                        </i></button>	</th>
+                    <th scope="col">Time Category</th>
+                    <th scope="col">Sun</th>
+                    <th scope="col">Mon</th>
+                    <th scope="col">Tue</th>
+                    <th scope="col">Wed</th>
+                    <th scope="col">Thu</th>
+                    <th scope="col">Fri</th>
+                    <th scope="col">Sat</th>
+                </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row"><i class="material-icons">
-                    add_circle
-                    </i></th>
-                <td>
-                    <mat-form-field>
-                        <mat-label>Time Category</mat-label>
-                        <mat-select>
-                            <mat-option *ngFor="let timeCat of timeCategory" [value]="timeCategory">
-                                {{timeCat}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </td>
-                <td>
-                        <input type="number" class="form-control" id="inputAddress" placeholder="">
-                      
-                </td>
-                <td>
-                    <input type="number" class="form-control" id="inputAddress" placeholder="">
-                </td>
-                <td>
-                    <input type="number" class="form-control" id="inputAddress" placeholder="">
-                </td>
-                <td>
-                    <input type="number" class="form-control" id="inputAddress" placeholder="">
-                </td>
-                <td>
-                    <input type="number" class="form-control" id="inputAddress" placeholder="">
-                </td>
-                <td>
-                    <input type="number" class="form-control" id="inputAddress" placeholder="">
-                </td>
-                <td>
-                    <input type="number" class="form-control" id="inputAddress" placeholder="">
-                </td>
-                <td>45</td>
-              </tr>
-             
+                <tr *ngFor="let row of addForm.get('rows')?.controls;let index = index;">
+                    <td scope="row"><button mat-icon-button (click)="onRemoveRow()" *ngIf="addForm.get('rows')"><i class="material-icons">
+                            remove_circle_outline
+                        </i></button></td>
+                    <td>
+                            <!-- appearance="outline" -->
+                        <mat-form-field >
+                            <mat-label>Time Category</mat-label>
+                            <mat-select>
+                                <mat-option *ngFor="let timeCat of timeCategory" [value]="timeCategory" 
+                                >
+                                    {{timeCat}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <input type="number" class="form-control" id="inputAddress" placeholder=""
+                        [formControl]="row.get('sun')">
+
+                    </td>
+                    <td>
+                        <input type="number" class="form-control" id="inputAddress" placeholder=""
+                        [formControl]="row.get('mon')">
+                    </td>
+                    <td>
+                        <input type="number" class="form-control" id="inputAddress" placeholder=""
+                        [formControl]="row.get('tue')">
+                    </td>
+                    <td>
+                        <input type="number" class="form-control" id="inputAddress" placeholder=""
+                        [formControl]="row.get('wed')">
+                    </td>
+                    <td>
+                        <input type="number" class="form-control" id="inputAddress" placeholder=""
+                        [formControl]="row.get('thu')">
+                    </td>
+                    <td>
+                        <input type="number" class="form-control" id="inputAddress" placeholder=""
+                        [formControl]="row.get('fri')">
+                    </td>
+                    <td>
+                        <input type="number" class="form-control" id="inputAddress" placeholder=""
+                        [formControl]="row.get('sat')">
+                    </td>
+                </tr>
+
             </tbody>
-          </table>
+        </table>
+        </div>
+        </div>
     </mat-card-content>
     <mat-divider></mat-divider>
     <mat-card-actions>
-            <button mat-raised-button color="accent" (click)="saveTimeSheet()">save</button>
-            <button mat-raised-button color="primary" (click)="submitTimeSheet()">submit</button>
-            
-        </mat-card-actions>
+        <button mat-raised-button color="accent" (click)="saveTimeSheet()">Draft</button>
+        <button mat-raised-button color="primary" (click)="submitTimeSheet()">submit</button>
+        <div class="d-flex flex-row-reverse bd-highlight">
+                <div class="p-2 bd-highlight"><mat-chip color="primary" selected>Total Time Entered: {{timeEntered}}</mat-chip></div>
+              </div>
+
+    </mat-card-actions>
 </mat-card>
 
 <mat-card class="example-card mt-4 bg-light">
-    <mat-card-header >
+    <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title >Upload Expenses</mat-card-title>
+        <mat-card-title>Upload Expenses</mat-card-title>
     </mat-card-header>
     <mat-card-content>
         <mat-divider></mat-divider>
-        <mat-form-field>
-            <mat-label>Favorite food</mat-label>
-            <mat-select>
-                <mat-option *ngFor="let food of foods" [value]="food.value">
-                    {{food.viewValue}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
+        <form class="example-form">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Expense Type" value="">
+                </mat-form-field>
+                <mat-form-field  class="exp-right-amount">
+                        <input matInput type="number" placeholder="in INR" value="">
+                      </mat-form-field>
+                      <mat-form-field class="exp-right-amount">
+                            <input matInput [matDatepicker]="picker" placeholder="From">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                          </mat-form-field>
+                          <mat-form-field class="exp-right-amount">
+                                <input matInput [matDatepicker]="picker2" placeholder="To">
+                                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                <mat-datepicker #picker2></mat-datepicker>
+                              </mat-form-field>
+                <mat-form-field class="exp-right">
+                  <textarea matInput placeholder="Leave a comment"></textarea>
+                </mat-form-field>
+                <div class="custom-file exp-right">
+                        <input type="file" (change)="onSelectFiles($event)" class="custom-file-input" id="customFile" multiple>
+                        <label class="custom-file-label" for="customFile">{{fileName}}</label>
+                      </div>
+              </form>
+        <!-- <div class="custom-file ">
+                <input type="file" (change)="onSelectFiles($event)" class="custom-file-input" id="customFile" multiple>
+                <label class="custom-file-label" for="customFile">{{fileName}}</label>
+              </div> -->
 
     </mat-card-content>
     <mat-card-actions>
-            <button mat-raised-button color="primary" (click)="submitEspenses()">submit</button>
-        </mat-card-actions>
+        <button mat-raised-button color="primary" (click)="submitEspenses()">submit</button>
+    </mat-card-actions>
 </mat-card>

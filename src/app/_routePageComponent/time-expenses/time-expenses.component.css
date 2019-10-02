@@ -32,3 +32,15 @@ thead {
   font-weight: 300;
   line-height: 1.2;
 }
+
+.exp-right{
+  margin-left: 2%;
+}
+.exp-right-amount{
+  margin-left: 2%;
+  width:10%
+}
+
+.custom-file {
+  width: 20%;
+}
