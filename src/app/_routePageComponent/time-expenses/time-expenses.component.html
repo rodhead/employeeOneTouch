@@ -1,3 +1,4 @@
+<div *ngIf="timeFlag">
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
     <strong>Alert! </strong> Time Sheet submition ends in 09:00 hrs.
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -42,10 +43,10 @@
                             <!-- appearance="outline" -->
                         <mat-form-field >
                             <mat-label>Time Category</mat-label>
-                            <mat-select>
-                                <mat-option *ngFor="let timeCat of timeCategory" [value]="timeCategory" 
+                            <mat-select [formControl]="row.get('timeCategory')" (selectionChange)="changeTimeCategory($event.value)">
+                                <mat-option *ngFor="let timeCat of timeCategory" [value]="timeCat.value" 
                                 >
-                                    {{timeCat}}
+                                    {{timeCat.value}}
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
@@ -139,3 +140,5 @@
         <button mat-raised-button color="primary" (click)="submitEspenses()">submit</button>
     </mat-card-actions>
 </mat-card>
+<button mat-raised-button color="primary" (click)="notificationRoute()">Go</button>
+</div>

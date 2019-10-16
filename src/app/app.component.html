@@ -25,7 +25,7 @@
   </form>
 </nav>
 <nav class="navbar navbar-light bg-light" *ngIf="currentUser">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" href="#"></a>
   <ul class="nav justify-content-end">
       <li class="nav-item border-right">
           <button mat-button [matMenuTriggerFor]="menu">Policy <i class="material-icons">
@@ -41,7 +41,7 @@
               arrow_drop_down
           </i></button>
           <mat-menu #track="matMenu">
-            <button mat-menu-item [matMenuTriggerFor]="timeExp">Time & Expense</button>
+            <button mat-menu-item [matMenuTriggerFor]="timeExp" (click)="timeExpensePage()">Time & Expense</button>
             <button mat-menu-item>Leave Request</button>
           </mat-menu>
           <mat-menu #timeExp="matMenu">
@@ -53,7 +53,9 @@
         <a class="nav-link" href="#">Link</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        <button mat-button (click)="notificationRoute()" > <i class="material-icons">
+          notifications
+      </i> Notification</button>
       </li>
     </ul>
   <form class="form-inline my-2 my-lg-0 example-form">

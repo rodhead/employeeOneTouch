@@ -23,7 +23,6 @@ export class HomeComponent {
     }
 
     timeExpensesPage(){
-        alert("click");
         this.homeVal=false;
         this.router.navigateByUrl("/leaveexpenses")
     }

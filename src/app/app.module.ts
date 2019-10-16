@@ -17,6 +17,7 @@ import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MaterialModule} from './material-module';
 import { TimeExpensesComponent } from './_routePageComponent/time-expenses/time-expenses.component';
+import { NotificationComponent } from './_routePageComponent/notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { TimeExpensesComponent } from './_routePageComponent/time-expenses/time-
         HomeComponent,
         LoginComponent,
         TimeExpensesComponent,
+        NotificationComponent,
         
         
   ],

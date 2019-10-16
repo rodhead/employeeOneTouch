@@ -55,4 +55,10 @@ export class AppComponent implements OnInit{
         this.authenticationService.logout();
         this.router.navigate(['/login']);
     }
+    timeExpensePage(){
+      this.router.navigate(['/leaveexpenses']);
+    }
+    notificationRoute(){
+      this.router.navigate(['/notification']);
+    }
 }

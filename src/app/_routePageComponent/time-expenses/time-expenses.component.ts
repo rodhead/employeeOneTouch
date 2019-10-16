@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray, NgForm } from '@angular/forms'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-time-expenses',
@@ -12,9 +13,14 @@ export class TimeExpensesComponent  {
   rows: FormArray;
   itemForm: FormGroup;
   fileName:String="upload File";
-  timeCategory:string[]=['GDJ-03-AL-0093','Leave', 'Travel','Client Site'];
+  timeCategory=[{value:'GDJ-03-AL-0093'},
+ { value:'Leave'}, 
+  {value:'Travel'},
+  {value:'Client Site'}];
+  timeFlag=true;
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router:Router
   ) { 
     this.addForm = this.fb.group({
     });
@@ -28,6 +34,9 @@ export class TimeExpensesComponent  {
     this.rows.push(this.createItemFormGroup());
   }
 
+  changeTimeCategory(timeCat){
+    console.log(timeCat);
+  }
   onAddRow() {
     this.rows.push(this.createItemFormGroup());
   }
@@ -49,7 +58,8 @@ export class TimeExpensesComponent  {
   }
 
   saveTimeSheet(){
-    alert("save");
+    console.log(this.addForm);
+    console.log(this.timeCategory);
   }
   submitTimeSheet(){
     alert("submit");
@@ -58,4 +68,10 @@ export class TimeExpensesComponent  {
   submitEspenses(){
     alert("submit expenses!");
   }
+  notificationRoute(){
+    this.timeFlag=false;
+    this.router.navigateByUrl("/notification")
+  }
+
+
 }
