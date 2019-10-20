@@ -26,4 +26,8 @@ export class HomeComponent {
         this.homeVal=false;
         this.router.navigateByUrl("/leaveexpenses")
     }
+    myProfilePage(){
+        this.homeVal=false;
+        this.router.navigateByUrl("home/myprofile")
+    }
 }

@@ -11,3 +11,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
     outline: 0 !important;
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;
   }
+
+  h4, h5{
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
