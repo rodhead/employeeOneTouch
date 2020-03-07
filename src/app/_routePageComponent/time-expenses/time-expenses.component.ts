@@ -59,14 +59,21 @@ export class TimeExpensesComponent  {
 
   saveTimeSheet(){
     console.log(this.addForm);
-    console.log(this.timeCategory);
   }
   submitTimeSheet(){
-    alert("submit");
+    const confirmResult=confirm("Do you want submit this TimeSheet?");
+    if(confirmResult){
+     const timeSheetFormData=new FormData();
+     timeSheetFormData.append('timeSheetFormData',this.addForm.value.rows);
+     console.log(JSON.stringify(timeSheetFormData));
+    }
+    else{
+      alert("No")
+    }
   }
 
   submitEspenses(){
-    alert("submit expenses!");
+    
   }
   notificationRoute(){
     this.timeFlag=false;
